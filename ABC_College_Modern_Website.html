@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ABC College of Technology — learning, innovation and career-ready education.">
+<title>ABC College of Technology</title>
+<style>
+:root{--navy:#10264a;--blue:#2563eb;--sky:#eaf2ff;--gold:#f4b942;--ink:#172033;--muted:#64748b;--white:#fff;--bg:#f7f9fc}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{color:inherit;text-decoration:none}
+.topbar{background:#0b1933;color:#e7edff;padding:8px 6%;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 4px 20px #0b19330c}
+.nav{max-width:1200px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;color:var(--navy);font-size:18px;line-height:1.2}
+.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--navy));display:grid;place-items:center;color:white;font-weight:900;font-size:21px}
+nav{display:flex;align-items:center;gap:23px;font-size:14px;font-weight:700}
+nav a:hover{color:var(--blue)}
+.btn{border:0;display:inline-block;background:var(--blue);color:white;padding:12px 19px;border-radius:9px;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{background:#1749b5;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--navy);border:1px solid #cbd5e1}
+.menu-toggle{display:none;background:none;border:0;font-size:27px;cursor:pointer;color:var(--navy)}
+.hero{background:radial-gradient(circle at 85% 20%,#315da3 0,transparent 28%),linear-gradient(120deg,#0b1933,#173b73);color:#fff;padding:82px 24px 76px}
+.hero-inner{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.25fr .75fr;gap:42px;align-items:center}
+.eyebrow{display:inline-block;color:#ffe3a1;background:#ffffff16;border:1px solid #ffffff30;border-radius:99px;padding:6px 12px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.08;margin:18px 0}
+.hero p{color:#dbe6fa;max-width:610px;font-size:17px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero .btn{background:var(--gold);color:#172033}.hero .btn-outline{border-color:#ffffff70;color:#fff;background:transparent}
+.hero-card{background:#fff;color:var(--ink);border-radius:22px;padding:27px;box-shadow:0 24px 60px #0003;transform:rotate(1deg)}
+.hero-card h3{margin:0 0 7px;color:var(--navy);font-size:21px}
+.hero-card p{color:var(--muted);font-size:14px;margin:0 0 17px}
+.quick-item{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #edf0f5}
+.quick-item:last-child{border-bottom:0}.quick-icon{width:38px;height:38px;border-radius:12px;background:var(--sky);display:grid;place-items:center;font-size:19px}
+.quick-item strong{display:block;font-size:14px}.quick-item small{color:var(--muted)}
+.stats{max-width:1100px;margin:-25px auto 0;position:relative;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:16px;box-shadow:0 12px 35px #142b4b12;padding:22px}
+.stat{text-align:center;border-right:1px solid #e8edf5}.stat:last-child{border:0}.stat strong{display:block;color:var(--blue);font-size:27px}.stat span{font-size:13px;color:var(--muted)}
+section{padding:75px 24px}.container{max-width:1100px;margin:auto}
+.section-head{text-align:center;max-width:650px;margin:0 auto 35px}.section-head .kicker{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:1.4px;font-size:12px}.section-head h2{color:var(--navy);font-size:clamp(28px,3.4vw,38px);margin:7px 0}.section-head p{color:var(--muted);margin:0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}
+.about-panel{background:linear-gradient(145deg,#dce9ff,#f5f8ff);border-radius:22px;padding:30px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between}
+.about-panel .big-icon{font-size:68px}.about-panel h3{font-size:24px;color:var(--navy);margin:8px 0}
+.about-copy h3{font-size:25px;color:var(--navy);margin-top:0}.about-copy p{color:var(--muted)}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.check{font-weight:700;font-size:14px}.check::before{content:"✓";color:#16a34a;font-weight:900;margin-right:8px}
+#courses{background:#fff}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.course{border:1px solid #e6ebf3;background:#fff;border-radius:16px;padding:23px;transition:.2s;display:flex;flex-direction:column;align-items:flex-start}
+.course:hover{transform:translateY(-5px);box-shadow:0 15px 35px #152d5012;border-color:#c4d6ff}
+.course-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--sky);font-size:24px;margin-bottom:15px}
+.course h3{margin:0 0 8px;color:var(--navy);font-size:18px}.course p{color:var(--muted);font-size:14px;margin:0 0 16px;flex:1}
+.course a{color:var(--blue);font-weight:800;font-size:13px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.news{background:#fff;border-radius:15px;padding:23px;border:1px solid #e8edf5}
+.news .tag{font-size:11px;font-weight:800;color:#1d4ed8;background:#eaf2ff;padding:5px 9px;border-radius:99px}
+.news h3{font-size:17px;color:var(--navy);margin:15px 0 8px}.news p{font-size:14px;color:var(--muted);margin:0}
+.admission{background:linear-gradient(120deg,#10264a,#1e4d91);color:white}
+.admission-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:42px;align-items:start}
+.admission h2{font-size:36px;line-height:1.15;margin:12px 0}.admission .intro{color:#d8e5fb}
+.admission-points{margin-top:25px}.admission-points div{margin:12px 0;color:#edf4ff}
+.form-card{background:white;color:var(--ink);border-radius:18px;padding:28px;box-shadow:0 20px 45px #0002}
+.form-card h3{margin:0;color:var(--navy);font-size:23px}.form-card>p{margin:5px 0 20px;color:var(--muted);font-size:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:700;color:#334155}input,select,textarea{font:inherit;border:1px solid #d5deea;border-radius:8px;padding:11px 12px;outline:none;width:100%;background:#fff}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #2563eb19}
+.form-card button{width:100%;margin-top:17px}.message{display:none;margin-top:13px;padding:11px;border-radius:8px;background:#dcfce7;color:#166534;font-size:14px}
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
+.contact-info{background:#fff;border:1px solid #e8edf5;border-radius:16px;padding:25px}.contact-info h3{color:var(--navy);margin-top:0}
+.contact-line{padding:12px 0;border-bottom:1px solid #edf0f5;color:var(--muted);font-size:14px}.contact-line:last-child{border:0}
+.map-placeholder{border-radius:16px;background:linear-gradient(135deg,#e7efff,#f8fafc);min-height:250px;display:grid;place-items:center;text-align:center;padding:25px;color:var(--navy)}
+footer{background:#09152c;color:#d4deef;padding:28px 24px}.footer-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;font-size:13px}.footer-inner strong{color:#fff}
+.back-top{position:fixed;right:18px;bottom:18px;background:var(--blue);color:#fff;border:0;border-radius:50%;width:44px;height:44px;font-size:20px;cursor:pointer;box-shadow:0 6px 20px #0002;display:none}
+@media(max-width:900px){nav{gap:13px}.cards{grid-template-columns:repeat(2,1fr)}.hero-inner{grid-template-columns:1fr .8fr}.stats{margin-left:20px;margin-right:20px}}
+@media(max-width:700px){.topbar{justify-content:center;text-align:center}.nav{padding:12px 18px}.menu-toggle{display:block}nav{display:none;position:absolute;top:72px;left:0;right:0;background:white;padding:18px 24px;box-shadow:0 12px 20px #0001;flex-direction:column;align-items:stretch}nav.open{display:flex}nav .btn{text-align:center}.hero{padding:58px 20px}.hero-inner,.about-grid,.admission-grid,.contact-grid{grid-template-columns:1fr}.hero-card{transform:none}.stats{grid-template-columns:repeat(2,1fr);padding:12px;margin-top:-15px}.stat{padding:12px 5px}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid #e8edf5}.stat strong{font-size:23px}section{padding:58px 20px}.cards,.news-grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr 1fr}.admission h2{font-size:31px}}
+@media(max-width:420px){.brand{font-size:15px}.logo{width:40px;height:40px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.checks{grid-template-columns:1fr}.hero-actions .btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>🎓 Admissions open for Academic Session 2026–27</span><span>📧 admissions@abccollege.edu.in &nbsp; | &nbsp; ☎ +91 98765 43210</span></div>
+<header>
+  <div class="nav">
+    <a class="brand" href="#home"><span class="logo">ABC</span><span>ABC COLLEGE<br><small style="font-size:11px;font-weight:600;color:#64748b">OF TECHNOLOGY</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu">☰</button>
+    <nav id="navLinks">
+      <a href="#home">Home</a><a href="#about">About Us</a><a href="#courses">Courses</a><a href="#news">News</a><a href="#contact">Contact</a><a class="btn" href="#admission">Apply Now</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">Knowledge · Innovation · Excellence</span>
+      <h1>Build your future.<br>Make an impact.</h1>
+      <p>Discover your potential at ABC College of Technology. Learn from experienced faculty, build practical skills, and prepare for a career that moves you forward.</p>
+      <div class="hero-actions"><a class="btn" href="#courses">Explore Courses&nbsp; →</a><a class="btn btn-outline" href="#about">Discover ABC</a></div>
+    </div>
+    <div class="hero-card">
+      <h3>Your next chapter starts here</h3><p>Explore opportunities to learn, create and grow.</p>
+      <div class="quick-item"><span class="quick-icon">💻</span><div><strong>Technology-led learning</strong><small>Practical, future-ready skills</small></div></div>
+      <div class="quick-item"><span class="quick-icon">👩‍🎓</span><div><strong>Student-first campus</strong><small>Support from day one</small></div></div>
+      <div class="quick-item"><span class="quick-icon">🚀</span><div><strong>Career development</strong><small>Projects, internships and more</small></div></div>
+    </div>
+  </div>
+</section>
+<div class="stats">
+  <div class="stat"><strong>20+</strong><span>Learning pathways</span></div>
+  <div class="stat"><strong>50+</strong><span>Expert faculty</span></div>
+  <div class="stat"><strong>100%</strong><span>Learning focused</span></div>
+  <div class="stat"><strong>2026–27</strong><span>Admissions open</span></div>
+</div>
+<section id="about">
+ <div class="container about-grid">
+  <div class="about-panel"><div class="big-icon">🏛️</div><div><span class="eyebrow" style="background:#fff;color:#1d4ed8;border-color:#d4e2ff">Learn beyond the classroom</span><h3>Ideas today. Innovations tomorrow.</h3><p style="margin-bottom:0;color:#52647d">A place to explore your curiosity and turn it into capability.</p></div></div>
+  <div class="about-copy"><span class="section-head" style="text-align:left;margin:0"><span class="kicker">About ABC</span><h2>Education that prepares you for what's next</h2></span>
+   <p>ABC College of Technology is committed to providing quality education in Computer Science, Information Technology and Management. Our learning approach combines strong fundamentals with practical activities and collaborative projects.</p>
+   <p>We aim to help students develop confidence, critical thinking and the skills needed to keep growing in a changing world.</p>
+   <div class="checks"><div class="check">Practical learning</div><div class="check">Supportive faculty</div><div class="check">Student projects</div><div class="check">Career readiness</div></div>
+  </div>
+ </div>
+</section>
+<section id="courses">
+ <div class="container">
+  <div class="section-head"><span class="kicker">Find your path</span><h2>Explore Our Courses</h2><p>Choose a program that matches your interests and helps you take the next step.</p></div>
+  <div class="cards">
+   <article class="course"><div class="course-icon">🖥️</div><h3>BCA</h3><p>Bachelor of Computer Applications — build a foundation in programming, databases and software development.</p><a href="#admission" data-course="BCA">Enquire about BCA →</a></article>
+   <article class="course"><div class="course-icon">🧠</div><h3>MCA</h3><p>Master of Computer Applications — deepen your computing knowledge and problem-solving skills.</p><a href="#admission" data-course="MCA">Enquire about MCA →</a></article>
+   <article class="course"><div class="course-icon">⚙️</div><h3>B.Tech Computer Science</h3><p>Explore computing principles, engineering concepts and hands-on technical projects.</p><a href="#admission" data-course="B.Tech Computer Science">Enquire about B.Tech →</a></article>
+   <article class="course"><div class="course-icon">🔬</div><h3>M.Tech Computer Science</h3><p>Advance your technical expertise through specialised study and research-oriented learning.</p><a href="#admission" data-course="M.Tech Computer Science">Enquire about M.Tech →</a></article>
+  </div>
+ </div>
+</section>
+<section id="news">
+ <div class="container">
+  <div class="section-head"><span class="kicker">Campus updates</span><h2>Latest News & Announcements</h2><p>Keep up with admissions, campus activities and student opportunities.</p></div>
+  <div class="news-grid">
+   <article class="news"><span class="tag">ADMISSIONS</span><h3>Admission open for 2026–27</h3><p>Interested students can submit the enquiry form to receive information about available programs.</p></article>
+   <article class="news"><span class="tag">CAMPUS LIFE</span><h3>Annual Technical Fest</h3><p>Get ready to share ideas, explore technology and take part in collaborative activities.</p></article>
+   <article class="news"><span class="tag">CAREER</span><h3>Internship program enquiries</h3><p>Students can register their interest in upcoming internship and project opportunities.</p></article>
+  </div>
+ </div>
+</section>
+<section class="admission" id="admission">
+ <div class="container admission-grid">
+  <div><span class="eyebrow">Admissions 2026–27</span><h2>Take the first step toward your future.</h2><p class="intro">Fill in the enquiry form and our admissions team will be in touch with information about courses and the application process.</p><div class="admission-points"><div>✓ &nbsp;Explore programs and eligibility</div><div>✓ &nbsp;Get guidance on the application process</div><div>✓ &nbsp;Ask questions before you apply</div></div></div>
+  <form class="form-card" id="admissionForm">
+   <h3>Admission Enquiry</h3><p>Fields marked with * are required.</p>
+   <div class="form-grid">
+    <div class="field"><label for="studentName">Full name *</label><input id="studentName" name="name" required placeholder="Enter your name"></div>
+    <div class="field"><label for="studentEmail">Email address *</label><input id="studentEmail" name="email" type="email" required placeholder="you@example.com"></div>
+    <div class="field"><label for="studentPhone">Mobile number *</label><input id="studentPhone" name="phone" type="tel" pattern="[0-9+\-\s]{10,15}" required placeholder="Enter mobile number"></div>
+    <div class="field"><label for="courseChoice">Course interested in *</label><select id="courseChoice" name="course" required><option value="">Select a course</option><option>BCA</option><option>MCA</option><option>B.Tech Computer Science</option><option>M.Tech Computer Science</option></select></div>
+    <div class="field full"><label for="studentMessage">Your question (optional)</label><textarea id="studentMessage" name="message" rows="3" placeholder="Tell us what you'd like to know"></textarea></div>
+   </div>
+   <button class="btn" type="submit">Submit Enquiry&nbsp; →</button><div class="message" id="formMessage" role="status"></div>
+  </form>
+ </div>
+</section>
+<section id="contact">
+ <div class="container">
+  <div class="section-head"><span class="kicker">We're here to help</span><h2>Contact ABC College</h2><p>Have a question about courses or admissions? Reach out to us.</p></div>
+  <div class="contact-grid">
+   <div class="contact-info"><h3>Get in touch</h3><div class="contact-line">📍 <strong>Campus</strong><br>ABC College of Technology, Main Campus, India</div><div class="contact-line">☎ <strong>Phone</strong><br>+91 98765 43210</div><div class="contact-line">✉ <strong>Email</strong><br>admissions@abccollege.edu.in</div><div class="contact-line">🕒 <strong>Office hours</strong><br>Monday – Saturday, 9:00 AM – 4:00 PM</div></div>
+   <div class="map-placeholder"><div><div style="font-size:45px">📍</div><h3 style="margin:8px 0">Visit our campus</h3><p style="color:#64748b;margin:0">Contact the college office for campus directions and visit details.</p></div></div>
+  </div>
+ </div>
+</section>
+</main>
+<footer><div class="footer-inner"><div><strong>ABC College of Technology</strong><br>Knowledge · Innovation · Excellence</div><div>© <span id="year"></span> ABC College of Technology. All rights reserved.</div><div><a href="#home">Back to top ↑</a></div></div></footer>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+<script>
+const menuToggle=document.getElementById('menuToggle');
+const navLinks=document.getElementById('navLinks');
+menuToggle.addEventListener('click',()=>{navLinks.classList.toggle('open');menuToggle.textContent=navLinks.classList.contains('open')?'×':'☰';});
+navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.textContent='☰';}));
+document.querySelectorAll('[data-course]').forEach(link=>link.addEventListener('click',()=>{document.getElementById('courseChoice').value=link.dataset.course;}));
+document.getElementById('admissionForm').addEventListener('submit',function(event){
+ event.preventDefault();
+ if(!this.reportValidity()) return;
+ const name=document.getElementById('studentName').value.trim();
+ const course=document.getElementById('courseChoice').value;
+ const message=document.getElementById('formMessage');
+ message.textContent=`Thank you, ${name}! Your enquiry for ${course} has been prepared successfully. This demo website does not send data to a college server.`;
+ message.style.display='block';
+ this.reset();
+});
+document.getElementById('year').textContent=new Date().getFullYear();
+const backTop=document.getElementById('backTop');
+window.addEventListener('scroll',()=>{backTop.style.display=window.scrollY>400?'block':'none';});
+backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>

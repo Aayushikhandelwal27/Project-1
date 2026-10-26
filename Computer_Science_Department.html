@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Department of Computer Science at XYZ University, Jaipur. Explore programs, faculty, notices and contact information.">
+  <title>Department of Computer Science | XYZ University</title>
+  <style>
+    :root {
+      --navy: #101b3f;
+      --blue: #3157d5;
+      --cyan: #35c6d4;
+      --ink: #202b45;
+      --muted: #68748b;
+      --paper: #f5f7fc;
+      --white: #ffffff;
+      --line: #e3e8f2;
+      --shadow: 0 18px 50px rgba(24, 42, 88, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--ink); background: var(--paper); line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar { background: #0b1330; color: #dce6ff; font-size: .88rem; }
+    .topbar-inner { max-width: 1180px; margin: auto; padding: 9px 24px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .topbar span { opacity: .92; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(227,232,242,.9); }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 235px; }
+    .brand-mark { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 14px; color: white; font-weight: 900; font-size: 1.1rem; background: linear-gradient(135deg, var(--blue), #6a48ce); box-shadow: 0 8px 20px rgba(49,87,213,.24); }
+    .brand strong { display: block; font-size: .98rem; line-height: 1.25; color: var(--navy); }
+    .brand small { color: var(--muted); font-size: .78rem; }
+    .links { display: flex; align-items: center; gap: 25px; font-size: .92rem; font-weight: 650; color: #4c5872; }
+    .links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: white !important; padding: 10px 16px; border-radius: 10px; }
+    .hero { overflow: hidden; position: relative; color: white; background: radial-gradient(circle at 80% 20%, rgba(53,198,212,.28), transparent 25%), linear-gradient(120deg, #101b3f 0%, #1d3479 62%, #3157d5 100%); }
+    .hero::after { content: ""; position: absolute; width: 430px; height: 430px; right: -150px; bottom: -250px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; box-shadow: 0 0 0 40px rgba(255,255,255,.035), 0 0 0 85px rgba(255,255,255,.025); }
+    .hero-inner { max-width: 1180px; margin: auto; padding: 78px 24px 88px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 44px; align-items: center; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; gap: 8px; align-items: center; color: #baf5f5; text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 800; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--cyan); }
+    h1 { margin: 18px 0 18px; max-width: 680px; font-size: clamp(2.45rem, 5vw, 4.35rem); line-height: 1.06; letter-spacing: -.045em; }
+    .hero p { max-width: 630px; color: #dbe5ff; font-size: 1.08rem; margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 19px; border-radius: 11px; font-weight: 750; transition: transform .2s, box-shadow .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-light { color: var(--navy); background: white; box-shadow: 0 10px 25px rgba(0,0,0,.12); }
+    .btn-outline { border: 1px solid rgba(255,255,255,.45); color: white; }
+    .hero-card { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.2); border-radius: 24px; padding: 28px; backdrop-filter: blur(12px); box-shadow: 0 24px 70px rgba(0,0,0,.14); }
+    .hero-card .card-label { color: #baf5f5; text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; font-weight: 800; }
+    .hero-card h2 { margin: 8px 0 18px; font-size: 1.55rem; }
+    .quick-stat { display: flex; align-items: center; gap: 14px; border-top: 1px solid rgba(255,255,255,.17); padding: 14px 0; }
+    .quick-stat:last-child { padding-bottom: 0; }
+    .stat-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: rgba(255,255,255,.13); font-size: 1.25rem; }
+    .quick-stat strong { display: block; font-size: .98rem; }
+    .quick-stat small { color: #dbe5ff; }
+    .section { max-width: 1180px; margin: auto; padding: 76px 24px; }
+    .section-head { max-width: 670px; margin-bottom: 32px; }
+    .kicker { color: var(--blue); font-size: .76rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+    h2.section-title { margin: 8px 0 12px; color: var(--navy); font-size: clamp(1.85rem, 3vw, 2.65rem); line-height: 1.15; letter-spacing: -.03em; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .intro-panel { background: white; border: 1px solid var(--line); padding: 30px; border-radius: 20px; box-shadow: var(--shadow); }
+    .intro-panel h3 { margin: 0 0 10px; color: var(--navy); font-size: 1.25rem; }
+    .intro-panel p { margin: 0; color: var(--muted); }
+    .programs { background: white; }
+    .program-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .program-card { border: 1px solid var(--line); border-radius: 18px; padding: 24px 20px; background: linear-gradient(145deg, #fff, #f7f9ff); transition: transform .2s, box-shadow .2s; }
+    .program-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .program-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: #eaf0ff; font-size: 1.35rem; margin-bottom: 17px; }
+    .program-card h3 { margin: 0 0 7px; color: var(--navy); font-size: 1.08rem; }
+    .program-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .faculty-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .faculty-card { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; gap: 15px; align-items: flex-start; box-shadow: 0 8px 28px rgba(24,42,88,.045); }
+    .avatar { flex: 0 0 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; color: white; font-weight: 850; font-size: 1.05rem; background: linear-gradient(135deg, #3157d5, #35b9c8); }
+    .faculty-card h3 { margin: 1px 0 4px; color: var(--navy); font-size: 1.03rem; }
+    .faculty-card .role { color: var(--blue); font-size: .83rem; font-weight: 750; }
+    .faculty-card p { margin: 7px 0 0; color: var(--muted); font-size: .87rem; }
+    .notice-section { background: #eef2ff; }
+    .notice-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 26px; align-items: start; }
+    .notice-intro { background: var(--navy); color: white; border-radius: 20px; padding: 28px; }
+    .notice-intro h3 { font-size: 1.5rem; line-height: 1.2; margin: 0 0 12px; }
+    .notice-intro p { color: #cdd8f8; margin: 0; }
+    .notice-list { display: grid; gap: 12px; }
+    .notice { display: flex; gap: 15px; align-items: flex-start; background: white; border: 1px solid #e0e6fb; padding: 18px 20px; border-radius: 15px; }
+    .notice-number { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 10px; color: var(--blue); background: #eaf0ff; font-weight: 850; }
+    .notice p { margin: 3px 0 0; font-weight: 650; }
+    .contact { background: white; }
+    .contact-card { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .contact-main { padding: 34px; }
+    .contact-main h3 { margin: 0 0 12px; font-size: 1.5rem; color: var(--navy); }
+    .contact-main p { color: var(--muted); }
+    .contact-info { background: linear-gradient(140deg, #101b3f, #243e91); color: white; padding: 34px; }
+    .contact-info h3 { margin: 0 0 18px; font-size: 1.25rem; }
+    .contact-row { display: flex; gap: 12px; margin: 17px 0; color: #e2e9ff; }
+    .contact-row span:first-child { font-size: 1.15rem; }
+    footer { background: #0b1330; color: #aebbdc; padding: 23px 24px; text-align: center; font-size: .88rem; }
+    footer strong { color: white; }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; padding-top: 58px; }
+      .hero-card { max-width: 560px; }
+      .program-grid { grid-template-columns: repeat(2, 1fr); }
+      .faculty-grid { grid-template-columns: 1fr 1fr; }
+      .links { gap: 14px; }
+    }
+    @media (max-width: 650px) {
+      .nav { align-items: flex-start; flex-direction: column; gap: 13px; }
+      .links { width: 100%; overflow-x: auto; padding-bottom: 4px; font-size: .85rem; }
+      .links a { white-space: nowrap; }
+      .topbar-inner { padding: 8px 18px; }
+      .hero-inner, .section { padding-left: 18px; padding-right: 18px; }
+      .hero-inner { padding-top: 48px; padding-bottom: 58px; }
+      .intro-grid, .notice-layout, .contact-card { grid-template-columns: 1fr; }
+      .program-grid, .faculty-grid { grid-template-columns: 1fr; }
+      .section { padding-top: 55px; padding-bottom: 55px; }
+      .intro-panel, .contact-main, .contact-info { padding: 24px; }
+      .faculty-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span>🎓 XYZ University · Jaipur, Rajasthan</span>
+      <span>Department of Computer Science</span>
+    </div>
+  </div>
+
+  <header>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <span class="brand-mark">CS</span>
+        <span><strong>Computer Science</strong><small>XYZ University</small></span>
+      </a>
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#faculty">Faculty</a>
+        <a href="#notices">Notices</a>
+        <a class="nav-cta" href="#contact">Contact Us ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div>
+          <span class="eyebrow">Learn · Build · Innovate</span>
+          <h1>Shaping the future through <span style="color:#77e4e8">technology.</span></h1>
+          <p>Welcome to the Department of Computer Science at XYZ University — a place to build strong technical foundations, sharpen problem-solving skills, and explore tomorrow’s technology.</p>
+          <div class="actions">
+            <a class="btn btn-light" href="#programs">Explore Programs →</a>
+            <a class="btn btn-outline" href="#about">Discover Our Department</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <span class="card-label">Department at a glance</span>
+          <h2>Knowledge for a digital world.</h2>
+          <div class="quick-stat">
+            <span class="stat-icon">💻</span>
+            <div><strong>Career-focused learning</strong><small>Technical and problem-solving skills</small></div>
+          </div>
+          <div class="quick-stat">
+            <span class="stat-icon">🧠</span>
+            <div><strong>Emerging technologies</strong><small>AI, data science and networks</small></div>
+          </div>
+          <div class="quick-stat">
+            <span class="stat-icon">📚</span>
+            <div><strong>Four academic programs</strong><small>Undergraduate and postgraduate study</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head">
+        <span class="kicker">About the department</span>
+        <h2 class="section-title">A strong foundation for what comes next.</h2>
+        <p>Our focus is on quality education and helping students develop the skills to solve real-world technical challenges.</p>
+      </div>
+      <div class="intro-grid">
+        <article class="intro-panel">
+          <h3>Our mission</h3>
+          <p>The Department of Computer Science provides quality education and develops technical and problem-solving skills among students.</p>
+        </article>
+        <article class="intro-panel">
+          <h3>Our learning focus</h3>
+          <p>Explore core computer science pathways alongside specializations such as Artificial Intelligence, Data Science and Computer Networks.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="programs" id="programs">
+      <div class="section">
+        <div class="section-head">
+          <span class="kicker">Academic pathways</span>
+          <h2 class="section-title">Programs offered</h2>
+          <p>Choose a pathway that matches your academic goals and interest in computing.</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card"><div class="program-icon">🎓</div><h3>BCA</h3><p>Bachelor of Computer Applications</p></article>
+          <article class="program-card"><div class="program-icon">🧩</div><h3>MCA</h3><p>Master of Computer Applications</p></article>
+          <article class="program-card"><div class="program-icon">⚙️</div><h3>B.Tech Computer Science</h3><p>Undergraduate engineering program</p></article>
+          <article class="program-card"><div class="program-icon">🚀</div><h3>M.Tech Computer Science</h3><p>Advanced postgraduate study</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faculty">
+      <div class="section-head">
+        <span class="kicker">Meet our faculty</span>
+        <h2 class="section-title">Guidance from experienced educators.</h2>
+        <p>Faculty members and their listed areas of specialization.</p>
+      </div>
+      <div class="faculty-grid">
+        <article class="faculty-card">
+          <div class="avatar">AS</div>
+          <div><h3>Dr. Amit Sharma</h3><div class="role">Professor</div><p>Specialization: Artificial Intelligence</p></div>
+        </article>
+        <article class="faculty-card">
+          <div class="avatar">NV</div>
+          <div><h3>Dr. Neha Verma</h3><div class="role">Associate Professor</div><p>Specialization: Data Science</p></div>
+        </article>
+        <article class="faculty-card">
+          <div class="avatar">RS</div>
+          <div><h3>Mr. Rahul Singh</h3><div class="role">Assistant Professor</div><p>Specialization: Computer Networks</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="notice-section" id="notices">
+      <div class="section">
+        <div class="section-head">
+          <span class="kicker">Stay informed</span>
+          <h2 class="section-title">Important notices</h2>
+          <p>Keep track of the department’s latest academic reminders.</p>
+        </div>
+        <div class="notice-layout">
+          <div class="notice-intro"><h3>What students need to know</h3><p>Please review these notices and plan your academic activities accordingly.</p></div>
+          <div class="notice-list">
+            <div class="notice"><span class="notice-number">01</span><p>Mid-term examinations will begin from 15 September.</p></div>
+            <div class="notice"><span class="notice-number">02</span><p>Students must submit their assignments before the deadline.</p></div>
+            <div class="notice"><span class="notice-number">03</span><p>Registration for the seminar is now open.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="section">
+        <div class="section-head">
+          <span class="kicker">Get in touch</span>
+          <h2 class="section-title">Contact the department</h2>
+          <p>For department-related queries, use the contact information below.</p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-main">
+            <h3>We’re here to help.</h3>
+            <p>Connect with the Department of Computer Science at XYZ University, Jaipur, Rajasthan.</p>
+            <a class="btn" style="background:#eaf0ff;color:#3157d5;margin-top:10px" href="mailto:cs@xyzuniversity.edu">Send an Email ↗</a>
+          </div>
+          <div class="contact-info">
+            <h3>Department details</h3>
+            <div class="contact-row"><span>📍</span><span>Department of Computer Science<br>XYZ University, Jaipur, Rajasthan</span></div>
+            <div class="contact-row"><span>✉️</span><span>cs@xyzuniversity.edu</span></div>
+            <div class="contact-row"><span>🏛️</span><span>XYZ University</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 <strong>XYZ University</strong> · Department of Computer Science</footer>
+</body>
+</html>

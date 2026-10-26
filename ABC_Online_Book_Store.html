@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3e3b8f">
+  <meta name="description" content="ABC Online Book Store — explore programming, technology, business, fiction and exam preparation books.">
+  <title>ABC Online Book Store | Stories & Knowledge Await</title>
+  <style>
+    :root {
+      --purple: #5146b5;
+      --purple-dark: #39317f;
+      --purple-soft: #eeecff;
+      --ink: #242440;
+      --muted: #6d7187;
+      --line: #e8e8f2;
+      --bg: #f8f8fc;
+      --white: #fff;
+      --gold: #f4b942;
+      --shadow: 0 18px 45px rgba(46, 41, 104, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
+    .topbar { background: #27254e; color: #efedff; font-size: 12px; }
+    .topbar .container { padding: 9px 0; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .navbar { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; font-size: 19px; letter-spacing: -.6px; }
+    .brand-mark { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; background: linear-gradient(135deg, #766be7, #5146b5); color: white; font-size: 24px; box-shadow: 0 8px 20px #5146b52b; }
+    .brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.7px; text-transform: uppercase; margin-top: -4px; }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: #555873; font-size: 14px; font-weight: 700; }
+    .nav-links a:hover { color: var(--purple); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 800; cursor: pointer; transition: .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--purple); color: white; box-shadow: 0 8px 20px #5146b52b; }
+    .btn-primary:hover { background: var(--purple-dark); }
+    .btn-light { background: white; border: 1px solid var(--line); color: var(--purple-dark); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 8px 12px; font-size: 22px; }
+    .hero { overflow: hidden; padding: 72px 0 65px; background: radial-gradient(circle at 83% 20%, #dcd9ff 0, transparent 29%), linear-gradient(120deg, #f7f6ff, #fbfbff 62%, #f0efff); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 50px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; border-radius: 100px; padding: 7px 12px; background: var(--purple-soft); color: var(--purple-dark); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 900; }
+    .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); }
+    h1 { font-size: clamp(42px, 5.3vw, 67px); line-height: 1.06; letter-spacing: -2.7px; margin: 20px 0; }
+    h1 em { color: var(--purple); font-style: normal; }
+    .hero-copy { max-width: 540px; color: var(--muted); font-size: 17px; line-height: 1.85; margin: 0 0 27px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 28px; font-size: 13px; color: var(--muted); }
+    .mini-stack { display: flex; padding-left: 5px; }
+    .mini-stack span { width: 31px; height: 31px; display: grid; place-items: center; margin-left: -5px; border-radius: 50%; border: 2px solid white; background: #e5e2ff; }
+    .book-scene { min-height: 405px; position: relative; display: grid; place-items: center; }
+    .book-halo { width: min(100%, 410px); aspect-ratio: 1; display: grid; place-items: center; border-radius: 47% 53% 45% 55%; background: linear-gradient(145deg, #dedbff, #f1efff); position: relative; }
+    .book-stack { position: relative; width: 235px; height: 255px; transform: rotate(-5deg); }
+    .book { position: absolute; width: 190px; height: 235px; border-radius: 9px 15px 15px 9px; box-shadow: 0 16px 28px #28234a20; border-left: 12px solid rgba(0,0,0,.12); display: flex; flex-direction: column; justify-content: space-between; padding: 23px 17px; color: white; }
+    .book b { font-size: 23px; line-height: 1.05; }
+    .book small { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: .9; }
+    .book .book-icon { font-size: 42px; text-align: center; }
+    .book-a { left: 5px; top: 10px; background: linear-gradient(145deg, #6b5dd3, #43368e); transform: rotate(-13deg); }
+    .book-b { left: 48px; top: 20px; background: linear-gradient(145deg, #e7a743, #bc6c24); transform: rotate(8deg); }
+    .book-c { left: 27px; top: 0; background: linear-gradient(145deg, #178b88, #075e68); transform: rotate(-2deg); }
+    .book-c b { font-size: 25px; }
+    .float-card { position: absolute; display: flex; align-items: center; gap: 10px; padding: 13px 15px; border-radius: 15px; background: white; box-shadow: var(--shadow); border: 1px solid #eeedf8; }
+    .float-card strong { display: block; font-size: 13px; }
+    .float-card small { display: block; font-size: 11px; color: var(--muted); }
+    .float-icon { width: 39px; height: 39px; display: grid; place-items: center; border-radius: 12px; background: var(--purple-soft); font-size: 21px; }
+    .float-one { left: -3px; top: 38px; }
+    .float-two { right: -2px; bottom: 35px; }
+    .benefits { border-bottom: 1px solid var(--line); }
+    .benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 24px 0; gap: 15px; }
+    .benefit { display: flex; justify-content: center; align-items: center; gap: 12px; border-right: 1px solid var(--line); }
+    .benefit:last-child { border: 0; }
+    .benefit-icon { font-size: 25px; }
+    .benefit strong { display: block; font-size: 14px; }
+    .benefit small { color: var(--muted); font-size: 12px; }
+    section { padding: 78px 0; }
+    .section-head { max-width: 660px; text-align: center; margin: 0 auto 36px; }
+    .section-head h2 { font-size: clamp(30px, 3.6vw, 43px); line-height: 1.15; letter-spacing: -1.5px; margin: 13px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .catalog { background: var(--bg); }
+    .catalog-tools { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+    .search { position: relative; width: min(100%, 340px); }
+    .search input { width: 100%; padding: 12px 15px 12px 42px; border: 1px solid var(--line); border-radius: 12px; outline: none; background: white; }
+    .search input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px #5146b515; }
+    .search span { position: absolute; left: 14px; top: 9px; font-size: 18px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn { border: 1px solid var(--line); background: white; color: var(--muted); padding: 9px 14px; border-radius: 100px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .filter-btn.active, .filter-btn:hover { background: var(--purple); color: white; border-color: var(--purple); }
+    .book-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .book-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 18px; background: white; transition: .2s ease; }
+    .book-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .book-card[hidden] { display: none; }
+    .cover { min-height: 190px; display: grid; place-items: center; position: relative; overflow: hidden; background: linear-gradient(145deg, #e9e6ff, #f7f6ff); }
+    .cover:before { content: ""; width: 145px; height: 145px; border: 1px solid #ffffffa0; border-radius: 50%; position: absolute; right: -40px; top: -45px; }
+    .cover-book { width: 125px; height: 155px; display: flex; flex-direction: column; justify-content: space-between; padding: 15px 12px; color: white; border-radius: 5px 11px 11px 5px; border-left: 8px solid #0002; box-shadow: 0 14px 25px #29234a25; transform: rotate(-5deg); z-index: 1; }
+    .cover-book strong { font-size: 16px; line-height: 1.1; }
+    .cover-book small { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .cover-book span { text-align: center; font-size: 31px; }
+    .cover.purple .cover-book { background: linear-gradient(145deg, #7164d6, #403486); }
+    .cover.teal { background: linear-gradient(145deg, #d9f3f1, #effbfa); }
+    .cover.teal .cover-book { background: linear-gradient(145deg, #168d88, #075e68); }
+    .cover.gold { background: linear-gradient(145deg, #fff0d8, #fff9ef); }
+    .cover.gold .cover-book { background: linear-gradient(145deg, #dba044, #a96520); }
+    .book-info { padding: 19px; display: flex; flex-direction: column; flex: 1; }
+    .category-label { display: inline-block; align-self: flex-start; background: var(--purple-soft); color: var(--purple-dark); border-radius: 6px; padding: 4px 8px; font-size: 10px; text-transform: uppercase; letter-spacing: .6px; font-weight: 900; }
+    .book-info h3 { font-size: 18px; margin: 10px 0 3px; }
+    .author { font-size: 12px; color: var(--muted); }
+    .book-info p { color: var(--muted); font-size: 13px; line-height: 1.7; flex: 1; margin: 12px 0 17px; }
+    .book-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--line); padding-top: 15px; }
+    .price { font-size: 21px; font-weight: 900; color: var(--purple-dark); }
+    .add-btn { border: 0; border-radius: 10px; background: var(--purple); color: white; padding: 9px 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .offer { padding: 0 0 78px; }
+    .offer-box { border-radius: 24px; padding: 34px 38px; display: flex; justify-content: space-between; align-items: center; gap: 24px; color: white; background: linear-gradient(110deg, #39317f, #6256c7); overflow: hidden; position: relative; }
+    .offer-box:after { content: "20%"; position: absolute; right: 22%; top: -45px; font-size: 145px; font-weight: 950; color: #ffffff0c; pointer-events: none; }
+    .offer-box h2 { margin: 0 0 8px; font-size: clamp(25px, 3vw, 36px); letter-spacing: -1px; }
+    .offer-box p { margin: 0; color: #e0ddff; }
+    .offer-pill { white-space: nowrap; padding: 13px 18px; border-radius: 13px; background: var(--gold); color: #30254c; font-weight: 950; z-index: 1; }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: center; }
+    .about-art { min-height: 350px; display: grid; place-items: center; background: linear-gradient(145deg, #e8e5ff, #f6f5ff); border-radius: 26px; position: relative; overflow: hidden; }
+    .about-art .big-icon { font-size: 145px; filter: drop-shadow(0 15px 12px #29234a14); }
+    .about-badge { position: absolute; bottom: 20px; left: 20px; padding: 13px 16px; border-radius: 12px; background: white; box-shadow: var(--shadow); font-size: 13px; font-weight: 800; }
+    .about-copy h2 { font-size: clamp(30px, 3.5vw, 42px); line-height: 1.15; letter-spacing: -1.5px; margin: 14px 0; }
+    .about-copy p { color: var(--muted); line-height: 1.85; }
+    .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0; margin: 23px 0 28px; list-style: none; }
+    .check-list li { font-size: 13px; font-weight: 750; }
+    .check-list li:before { content: "✓"; display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 8px; border-radius: 50%; background: var(--purple-soft); color: var(--purple); }
+    .contact { background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 45px; align-items: start; }
+    .contact-copy h2 { font-size: 38px; line-height: 1.15; letter-spacing: -1.2px; margin: 14px 0; }
+    .contact-copy > p { color: var(--muted); line-height: 1.8; }
+    .contact-detail { display: flex; gap: 12px; align-items: center; margin-top: 21px; }
+    .contact-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 13px; background: var(--purple-soft); font-size: 21px; }
+    .contact-detail strong { display: block; font-size: 14px; }
+    .contact-detail small { color: var(--muted); }
+    .contact-form { background: white; border: 1px solid var(--line); border-radius: 22px; padding: 28px; box-shadow: var(--shadow); }
+    .contact-form h3 { margin: 0 0 5px; font-size: 22px; }
+    .contact-form > p { margin: 0 0 20px; color: var(--muted); font-size: 13px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; font-weight: 800; }
+    .field input, .field select, .field textarea { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: #fcfcff; padding: 12px; outline: none; color: var(--ink); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px #5146b515; }
+    .field textarea { min-height: 85px; resize: vertical; }
+    .contact-form .btn { width: 100%; margin-top: 17px; }
+    .form-message { display: none; padding: 12px; border-radius: 10px; background: #eeecff; color: var(--purple-dark); margin-top: 12px; font-size: 13px; }
+    footer { background: #27254e; color: #f0efff; padding: 40px 0 20px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 30px; padding-bottom: 28px; }
+    footer .brand { color: white; }
+    footer .brand small { color: #bdb9e6; }
+    footer p { max-width: 330px; color: #c6c4e1; font-size: 13px; line-height: 1.8; }
+    footer h4 { margin: 4px 0 13px; }
+    .footer-links { display: grid; gap: 9px; font-size: 13px; color: #d0cfea; }
+    .footer-links a:hover { color: white; }
+    .copyright { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #ffffff20; padding-top: 17px; color: #b8b6d7; font-size: 12px; }
+    .toast { position: fixed; z-index: 30; left: 50%; bottom: 22px; transform: translate(-50%, 15px); opacity: 0; pointer-events: none; background: #27254e; color: white; padding: 12px 18px; border-radius: 12px; box-shadow: var(--shadow); transition: .25s; font-size: 13px; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .back-top { position: fixed; right: 18px; bottom: 20px; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; color: white; background: var(--purple); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .back-top.show { opacity: 1; pointer-events: auto; }
+    .empty-state { display: none; text-align: center; padding: 35px; color: var(--muted); grid-column: 1/-1; }
+    @media (max-width: 900px) { .book-grid { grid-template-columns: repeat(2, 1fr); } .nav-links { gap: 14px; } .hero-grid { gap: 25px; } }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 30px, 560px); }
+      .topbar .container { justify-content: center; text-align: center; }
+      .nav-inner { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 69px; left: 0; right: 0; padding: 20px; background: white; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); flex-direction: column; align-items: stretch; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { width: 100%; }
+      .hero { padding: 48px 0 30px; }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      h1 { letter-spacing: -1.8px; }
+      .hero-copy { font-size: 15px; }
+      .book-scene { min-height: 330px; }
+      .book-halo { width: min(85%, 330px); }
+      .float-one { left: 0; top: 18px; }
+      .float-two { right: 0; bottom: 12px; }
+      .benefit-grid { grid-template-columns: 1fr; gap: 15px; }
+      .benefit { justify-content: flex-start; border: 0; }
+      section { padding: 58px 0; }
+      .catalog-tools { align-items: stretch; }
+      .search { width: 100%; }
+      .filters { justify-content: center; }
+      .offer { padding-bottom: 58px; }
+      .offer-box { padding: 27px 22px; flex-direction: column; align-items: flex-start; }
+      .about-art { min-height: 280px; order: 2; }
+      .about-copy { order: 1; }
+      .contact-copy h2 { font-size: 33px; }
+      .contact-form { padding: 21px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1/-1; }
+    }
+    @media (max-width: 430px) {
+      .book-grid { grid-template-columns: 1fr; }
+      .check-list, .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-grid > div:first-child { grid-column: auto; }
+      .hero-actions .btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="container"><span>📚 A little reading goes a long way</span><span>✨ Special offer: 20% off selected books</span></div></div>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home"><span class="brand-mark">📖</span><span>ABC Book Store<small>Stories · Skills · Success</small></span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#books">Books</a><a href="#categories">Categories</a><a href="#offers">Offers</a><a href="#contact" class="btn btn-primary">Contact Us ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow"><i></i> Your next chapter starts here</span>
+          <h1>Open a book.<br>Open a world of <em>possibilities.</em></h1>
+          <p class="hero-copy">Welcome to ABC Online Book Store — your destination for programming, technology, business, fiction and competitive exam books. Find your next favourite read and keep growing.</p>
+          <div class="hero-actions"><a href="#books" class="btn btn-primary">Explore Popular Books ↓</a><a href="#categories" class="btn btn-light">Browse Categories</a></div>
+          <div class="hero-note"><div class="mini-stack"><span>💻</span><span>🚀</span><span>📚</span></div><span><strong>Learn something new every day</strong><br>Knowledge for every curious mind</span></div>
+        </div>
+        <div class="book-scene" aria-label="Illustration of a stack of books">
+          <div class="book-halo"><div class="book-stack">
+            <div class="book book-a"><small>Explore</small><b>THE ART<br>OF IDEAS</b><span class="book-icon">✦</span><small>Stories & more</small></div>
+            <div class="book book-b"><small>Build</small><b>BUSINESS<br>SMARTS</b><span class="book-icon">↗</span><small>Ideas to action</small></div>
+            <div class="book book-c"><small>Learn · Create</small><b>CODE<br>YOUR FUTURE</b><span class="book-icon">⌘</span><small>Technology series</small></div>
+          </div></div>
+          <div class="float-card float-one"><span class="float-icon">🔎</span><span><strong>Find your next read</strong><small>Books for every interest</small></span></div>
+          <div class="float-card float-two"><span class="float-icon">🎁</span><span><strong>Special offer</strong><small>Save 20% on selected books</small></span></div>
+        </div>
+      </div>
+    </section>
+    <div class="benefits"><div class="container benefit-grid">
+      <div class="benefit"><span class="benefit-icon">💻</span><span><strong>Tech & Programming</strong><small>Build your skills</small></span></div>
+      <div class="benefit"><span class="benefit-icon">📈</span><span><strong>Business & Ideas</strong><small>Grow your knowledge</small></span></div>
+      <div class="benefit"><span class="benefit-icon">🎓</span><span><strong>Exam Preparation</strong><small>Prepare with confidence</small></span></div>
+    </div></div>
+    <section id="categories">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Explore your interests</span><h2>A category for every curious mind</h2><p>Whether you're learning a new skill or escaping into a story, find a book that fits your journey.</p></div>
+        <div class="book-grid">
+          <a class="book-card category-card" href="#books" data-jump="programming"><div class="cover purple"><div class="cover-book"><small>Learn</small><strong>PROGRAMMING</strong><span>⌘</span><small>Code your future</small></div></div><div class="book-info"><span class="category-label">Technology</span><h3>Programming</h3><p>Build practical skills, explore coding concepts and bring your ideas to life.</p><div class="book-bottom"><span class="author">Explore books</span><span class="price">→</span></div></div></a>
+          <a class="book-card category-card" href="#books" data-jump="computer"><div class="cover teal"><div class="cover-book"><small>Discover</small><strong>COMPUTER SCIENCE</strong><span>⌘</span><small>Understand tech</small></div></div><div class="book-info"><span class="category-label">Technology</span><h3>Computer Science</h3><p>Explore the foundations of computing, data and digital systems.</p><div class="book-bottom"><span class="author">Explore books</span><span class="price">→</span></div></div></a>
+          <a class="book-card category-card" href="#books" data-jump="business"><div class="cover gold"><div class="cover-book"><small>Grow</small><strong>BUSINESS IDEAS</strong><span>↗</span><small>Think bigger</small></div></div><div class="book-info"><span class="category-label">Business</span><h3>Business</h3><p>Discover fresh perspectives on business, strategy and professional growth.</p><div class="book-bottom"><span class="author">Explore books</span><span class="price">→</span></div></div></a>
+        </div>
+      </div>
+    </section>
+    <section class="catalog" id="books">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Reader favourites</span><h2>Popular books</h2><p>Browse our featured titles and search for a book by name or author.</p></div>
+        <div class="catalog-tools">
+          <label class="search"><span>⌕</span><input type="search" id="bookSearch" placeholder="Search books or authors..." aria-label="Search books or authors"></label>
+          <div class="filters" role="group" aria-label="Filter books">
+            <button class="filter-btn active" data-filter="all">All Books</button><button class="filter-btn" data-filter="programming">Programming</button><button class="filter-btn" data-filter="computer">Computer Science</button><button class="filter-btn" data-filter="business">Business</button>
+          </div>
+        </div>
+        <div class="book-grid" id="bookGrid">
+          <article class="book-card" data-category="programming" data-search="python programming john smith coding">
+            <div class="cover purple"><div class="cover-book"><small>Learn to code</small><strong>PYTHON<br>PROGRAMMING</strong><span>🐍</span><small>Programming</small></div></div>
+            <div class="book-info"><span class="category-label">Programming</span><h3>Python Programming</h3><span class="author">By John Smith</span><p>Explore the fundamentals of Python and take your first steps into programming.</p><div class="book-bottom"><span class="price">₹450</span><button class="add-btn" data-item="Python Programming">Enquire ↗</button></div></div>
+          </article>
+          <article class="book-card" data-category="computer" data-search="web technology david brown website html css">
+            <div class="cover teal"><div class="cover-book"><small>Build for web</small><strong>WEB<br>TECHNOLOGY</strong><span>🌐</span><small>Computer Science</small></div></div>
+            <div class="book-info"><span class="category-label">Computer Science</span><h3>Web Technology</h3><span class="author">By David Brown</span><p>Get introduced to the concepts behind websites and modern web technology.</p><div class="book-bottom"><span class="price">₹500</span><button class="add-btn" data-item="Web Technology">Enquire ↗</button></div></div>
+          </article>
+          <article class="book-card" data-category="computer" data-search="database management robert lee sql data">
+            <div class="cover gold"><div class="cover-book"><small>Organise data</small><strong>DATABASE<br>MANAGEMENT</strong><span>▤</span><small>Computer Science</small></div></div>
+            <div class="book-info"><span class="category-label">Computer Science</span><h3>Database Management</h3><span class="author">By Robert Lee</span><p>Discover the principles of storing, organising and managing information.</p><div class="book-bottom"><span class="price">₹550</span><button class="add-btn" data-item="Database Management">Enquire ↗</button></div></div>
+          </article>
+          <article class="book-card" data-category="business" data-search="business strategy growth">
+            <div class="cover purple"><div class="cover-book"><small>Think bigger</small><strong>BUSINESS<br>INSIGHTS</strong><span>📈</span><small>Business</small></div></div>
+            <div class="book-info"><span class="category-label">Business</span><h3>Business & Strategy</h3><span class="author">Business collection</span><p>Explore ideas around planning, decision-making and professional growth.</p><div class="book-bottom"><span class="price">Explore</span><button class="add-btn" data-item="Business & Strategy">Enquire ↗</button></div></div>
+          </article>
+          <article class="book-card" data-category="fiction" data-search="fiction novels stories imagination">
+            <div class="cover teal"><div class="cover-book"><small>Imagine</small><strong>WORLDS<br>BEYOND</strong><span>✦</span><small>Fiction</small></div></div>
+            <div class="book-info"><span class="category-label">Fiction</span><h3>Fiction Collection</h3><span class="author">Stories & novels</span><p>Take a break, get inspired and discover a world through stories.</p><div class="book-bottom"><span class="price">Explore</span><button class="add-btn" data-item="Fiction Collection">Enquire ↗</button></div></div>
+          </article>
+          <article class="book-card" data-category="exams" data-search="competitive exams preparation study">
+            <div class="cover gold"><div class="cover-book"><small>Get ready</small><strong>EXAM<br>PREP</strong><span>🎓</span><small>Study smarter</small></div></div>
+            <div class="book-info"><span class="category-label">Competitive Exams</span><h3>Competitive Exam Guides</h3><span class="author">Exam preparation</span><p>Support your study routine with focused revision and practice resources.</p><div class="book-bottom"><span class="price">Explore</span><button class="add-btn" data-item="Competitive Exam Guides">Enquire ↗</button></div></div>
+          </article>
+        </div>
+        <div class="empty-state" id="emptyState">No books found. Try a different search or category.</div>
+      </div>
+    </section>
+    <section class="offer" id="offers"><div class="container"><div class="offer-box"><div><h2>A little more knowledge, a little less price.</h2><p>Get 20% discount on selected books. Ask us which titles are included in the offer.</p></div><a href="#contact" class="offer-pill">20% OFF ✨</a></div></div></section>
+    <section id="about"><div class="container about-grid">
+      <div class="about-art"><span class="big-icon" role="img" aria-label="Books">📚</span><div class="about-badge">💜 &nbsp; Every book opens a new door</div></div>
+      <div class="about-copy"><span class="eyebrow">About our store</span><h2>For the love of learning and stories.</h2><p>ABC Online Book Store brings together books across programming, computer science, business, fiction and competitive exam preparation. Our goal is to make it easier to discover something useful, inspiring or simply enjoyable to read.</p><ul class="check-list"><li>Multiple book categories</li><li>Learning resources</li><li>Fiction & stories</li><li>Selected book offers</li></ul><a href="#books" class="btn btn-primary">Explore the Collection →</a></div>
+    </div></section>
+    <section class="contact" id="contact"><div class="container contact-grid">
+      <div class="contact-copy"><span class="eyebrow">Get in touch</span><h2>Looking for a particular book?</h2><p>Send an enquiry about a title, its availability or our special offer. Fill in the form and prepare a message you can send to the store.</p>
+        <div class="contact-detail"><div class="contact-icon">📚</div><div><strong>ABC Online Book Store</strong><small>Your online destination for books</small></div></div>
+        <div class="contact-detail"><div class="contact-icon">🎁</div><div><strong>Special offer</strong><small>20% discount on selected books</small></div></div>
+        <div class="contact-detail"><div class="contact-icon">✉️</div><div><strong>Book enquiries</strong><small>Use the form to prepare your request</small></div></div>
+      </div>
+      <form class="contact-form" id="enquiryForm"><h3>Book enquiry</h3><p>Tell us what you’re looking for.</p><div class="form-grid">
+        <div class="field"><label for="name">Your name *</label><input id="name" name="name" required placeholder="Enter your name"></div>
+        <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
+        <div class="field full"><label for="book">Book title / category *</label><input id="book" name="book" required placeholder="Which book are you interested in?"></div>
+        <div class="field full"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Ask about availability or offers"></textarea></div>
+      </div><button type="submit" class="btn btn-primary">Prepare Enquiry Message ↗</button><div class="form-message" id="formMessage" role="status"></div></form>
+    </div></section>
+  </main>
+  <footer><div class="container"><div class="footer-grid">
+    <div><a class="brand" href="#home"><span class="brand-mark">📖</span><span>ABC Book Store<small>Stories · Skills · Success</small></span></a><p>Books for curious minds, ambitious learners and anyone who loves a good story. Find your next chapter with us.</p></div>
+    <div><h4>Quick Links</h4><div class="footer-links"><a href="#home">Home</a><a href="#books">Popular Books</a><a href="#categories">Categories</a><a href="#offers">Special Offers</a></div></div>
+    <div><h4>Browse Categories</h4><div class="footer-links"><a href="#books" data-footer-filter="programming">Programming</a><a href="#books" data-footer-filter="computer">Computer Science</a><a href="#books" data-footer-filter="business">Business</a><a href="#books" data-footer-filter="all">All Books</a></div></div>
+  </div><div class="copyright"><span>© <span id="year">2026</span> ABC Online Book Store. All rights reserved.</span><span>Made for readers with ♥</span></div></div></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <a href="#home" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? '✕' : '☰';
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    }));
+    let activeFilter = 'all';
+    const search = document.getElementById('bookSearch');
+    function filterBooks() {
+      const term = search.value.toLowerCase().trim();
+      let count = 0;
+      document.querySelectorAll('#bookGrid .book-card').forEach(card => {
+        const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+        const matchesSearch = card.dataset.search.includes(term);
+        card.hidden = !(matchesCategory && matchesSearch);
+        if (!card.hidden) count++;
+      });
+      document.getElementById('emptyState').style.display = count ? 'none' : 'block';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === activeFilter));
+    }
+    search.addEventListener('input', filterBooks);
+    document.querySelectorAll('.filter-btn').forEach(button => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      filterBooks();
+    }));
+    document.querySelectorAll('[data-jump]').forEach(card => card.addEventListener('click', () => {
+      activeFilter = card.dataset.jump;
+      filterBooks();
+    }));
+    document.querySelectorAll('[data-footer-filter]').forEach(link => link.addEventListener('click', () => {
+      activeFilter = link.dataset.footerFilter;
+      filterBooks();
+    }));
+    const toast = document.getElementById('toast');
+    document.querySelectorAll('.add-btn').forEach(button => button.addEventListener('click', () => {
+      const item = button.dataset.item;
+      document.getElementById('book').value = item;
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      toast.textContent = item + ' selected — complete the form to prepare an enquiry.';
+      toast.classList.add('show');
+      window.setTimeout(() => toast.classList.remove('show'), 2800);
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('enquiryForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const book = String(data.get('book') || '').trim();
+      const message = String(data.get('message') || '').trim();
+      const body = `Hello ABC Online Book Store,%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ABook: ${encodeURIComponent(book)}%0AMessage: ${encodeURIComponent(message)}`;
+      const box = document.getElementById('formMessage');
+      box.style.display = 'block';
+      box.textContent = 'Your enquiry is filled in, but this demo website is not connected to a store email or order system. Connect a backend or email service to receive enquiries.';
+    });
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 400));
+  </script>
+</body>
+</html>
